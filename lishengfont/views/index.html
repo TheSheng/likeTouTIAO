@@ -1,0 +1,191 @@
+<!doctype html>
+<html lang="en" ng-app="recommand">
+<head>
+	<meta charset="UTF-8">
+	<meta name='referrer' content="never">
+	<link rel="shortcut icon" href="//mat1.gtimg.com/www/icon/favicon2.ico" />
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<title>首页</title>
+	<link rel="stylesheet" type="text/css" href="./news.css">
+
+	<link rel="stylesheet" type="text/css" href="http://www.bootcss.com/p/buttons/css/buttons.css">
+	<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+	<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+	<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="js/index.js"></script>
+
+
+	<link rel="stylesheet" href="css/spigPet.css" type="text/css">
+
+	<script type="text/javascript">
+		var isindex = true;
+		var visitor = true;
+	</script>
+
+	<script type="text/javascript" src="js/spig.js"></script>
+	<style>
+		.touimg{
+			width: 50px;
+			border-radius: 50%;
+			padding: 5px;
+		}
+		.navbar-default{
+
+			position: fixed;
+			left: 0px;
+			top:0px;
+			right: 0px;
+			z-index:9999
+		}
+		.user__pic {
+			width: 3rem;
+			height: 3rem;
+			background: url(https://images.unsplash.com/photo-1550799930-f9179127780e?ixlib=rb-1.2.1&q=80&fm=jpg&crop=entropy&cs=tinysrgb&w=400&fit=max&ixid=eyJhcHBfaWQiOjE0NTg5fQ);
+			background-size: 100% 100%;
+            position: fixed;
+			right: 235px;
+			top:10px;
+			/*margin-right: 0.5rem;*/
+			border-radius: 50%;
+		}
+	</style>
+
+</head>
+
+
+
+
+<body ng-controller="indexController">
+<div id="normals" >
+
+	<div class="navbar navbar-default" >
+		<div class="container">
+			<div class="navbar-header">
+				<div class="navbar-brand">
+					<img src="./image/logo.png">
+				</div>
+		  	</div>
+		  	<label for="toggle-checkbox" id="toggle-label" class="visible-xs-inline-block">MENU</label>
+		  	<input type="checkbox" id="toggle-checkbox" class="hidden">
+		  	<div class="hidden-xs">
+		  		<ul class="nav navbar-nav">
+			  		<li class="active"><a href="#">首页</a></li>
+					<li><a href="#" ng-click="editTag('tuijian')">推荐</a>
+			  		<li><a href="#" ng-click="editTag('yule')">娱乐</a>
+			  		<li><a href="#" ng-click="editTag('guoji')">全球</a>
+			  		<li><a href="#" ng-click="editTag('caijing')">财经</a>
+			  		<li><a href="#" ng-click="editTag('junshi')">军事</a>
+					<li><a href="#" ng-click="editTag('keji')">科技</a>
+					<li><a href="#" ng-click="editTag('image')">图片</a>
+					<li><a href="#" ng-click="editTag('youxi')">游戏</a>
+					<li><a href="#" ng-click="editTag('fashion')">时尚</a>
+					<li><a href="/member">个人中心</a>
+			  	</ul>
+			  	<ul class="nav navbar-nav navbar-right">
+                    <li><a href="#">{{local}}</a> </li>
+					<li><img src="{{user.imgUrl}}" class="touimg"></li>
+			  		<li ng-if="user!=null"><a href="#">{{user.userName}}</a></li>
+					<li ng-if="user==null"><a href="/login">login</a></li>
+
+			  	</ul>
+		  	</div>
+		</div>
+	</div>
+
+	<div class="container" style="margin-top: 70px" >
+		<div class="row">
+			<div class="col-md-2">
+				<div class="list-group side-bar hidden-xs">
+					<a href="#" id="1" class="list-group-item"ng-click="editTag('zonghe')">综合</a>
+					<a href="#" id="2"class="list-group-item" ng-click="editTag('tuijian')">推荐</a>
+					<a href="#" id="3"class="list-group-item active" ng-click="editTag('yule')">娱乐</a>
+					<a href="#" id="4"class="list-group-item" ng-click="editTag('guoji')">全球</a>
+					<a href="#" id="5"class="list-group-item" ng-click="editTag('caijing')">财经</a>
+					<a href="#"id="6" class="list-group-item" ng-click="editTag('junshi')">军事</a>
+					<a href="#" id="7"class="list-group-item" ng-click="editTag('keji')">科技</a>
+					<a href="#" id="8"class="list-group-item" ng-click="editTag('image')">图片</a>
+					<a href="#" id="9"class="list-group-item" ng-click="editTag('youxi')">游戏</a>
+					<a href="#" id="10"class="list-group-item" ng-click="editTag('fashion')">时尚</a>
+
+				</div>
+			</div>
+			<div class="col-md-7">
+
+				<div class="news-list">
+					<div class="news-list" ng-repeat="news in newslist">
+						<div class="news-list-item clearfix">
+							<div class="col-xs-5">
+								<img src="{{news.imgurl}}" class="img-responsive" />
+							</div>
+							<div class="col-xs-7">
+								<a href="/article" class="title" ng-click="saveArticle(news)">
+									<i class="articleTitle">{{news.title}}</i>
+								</a>
+								<div class="info">
+									<span><span class="avatar"><img src="./image/touxiang.jpg"></span>{{news.author}}</span>
+									&nbsp&nbsp&nbsp<span ng-click="opennew(news.url)" target="view_window">查看原网页</span>&nbsp&nbsp&nbsp
+									<span>{{news.time}}</span>
+
+
+
+								</div>
+
+							</div>
+						</div>
+
+
+					</div>
+					<button ng-show="!isSearch" class="button button-3d button-primary button-rounded" style="width: 100%" ng-click="more()">点击加载更多</button>
+				</div>
+			</div>
+			<div class="col-md-3">
+				<div class="search-bar" >
+					<input ng-model="search"  type="search"  placeholder="搜索" class="form-control" />
+				</div>
+				<div class="side-bar-card flag clearfix">
+					<div class="col-xs-5">
+						<img src="./image/youhai.png"/>
+					</div>
+					<div class="col-xs-7">
+						<div class="text-lg">有害信息举报专区</div>
+						<div>举报电话：12377</div>
+					</div>
+				</div>
+
+				<div class="side-bar-card">
+					<div class="card-title">
+						24小时新闻
+					</div>
+					<div class="card-body"  ng-mouseleave="fu()">
+						<div class="list">
+							<div class="item" ng-repeat="x in dayList" >
+								<div class="title" ng-click="saveArticle(x)">{{x.title}}</div>
+								<div class="desc" ng-click="opennew(x.url)">{{x.author}} 查看原网页</div>
+								<div class="desc"><img src={{x.imgurl}}></div>
+							</div>
+
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="footer">
+		<div class="glyphicon glyphicon-copyright-mark"></div>
+		2017  拴蛋头条  中国互联网举报中心ICP证1401号
+	</div>
+	<div id="spig" class="spig" style="top: 100px; left: 1132px;" >
+		<div id="message" style="display: block; opacity: 0.6784994322550366;">输入你想搜索的关键词再按Enter(回车)键就可以搜索啦!</div>
+		<div id="mumu" class="mumu" style="opacity: 1;"></div>
+	</div>
+</div>
+<div id="loading" style="display: none;">
+
+	<iframe src="/loading" width="100%" height="{{getHeight()}}"></iframe>
+</div>
+</body>
+</html>

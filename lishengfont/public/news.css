@@ -1,0 +1,139 @@
+a:hover{
+	text-decoration: none;
+}
+img, .nav-bar .list-group-item{
+	display: block;
+	max-width: 100%;
+	border-radius: 3px;
+}
+.navbar-brand{
+	margin: 0 auto;
+}
+.navbar .navbar-brand{
+	padding-top: 5px;
+}
+.side-bar .list-group-item{
+	border: 0;
+	border-radius: 10px;
+	margin-top: 10px;
+}
+.side-bar .list-group-item:first-child{
+	margin-top: 0;
+}
+.side-bar .list-group-item.active{
+	background-color: pink;
+}
+.col-xs-7 .title{
+	font-size: 15px;
+	font-weight: bold;
+	margin-bottom: 10px;
+	line-height: 25px;
+}
+.col-xs-7 .info{
+	color: #888;
+}
+.col-xs-7 a{
+	display: block;
+	color: #444;
+}
+.col-xs-7 a:hover{
+	color: #337ab7;
+}
+.avatar{
+	display: inline-block;
+}
+.avatar img{
+	display: inline-block;
+	width: 15px;
+	height: 15px;
+	margin-right: 16px;
+}
+.news-list-item{
+	padding-top: 10px;
+	padding-bottom: 10px;
+	border: 1px solid #eee;
+}
+.news-list-item:first-child{
+	padding-top: 0;
+}
+.side-bar-card{
+	background: rgba(0,0,0,.05);
+	margin-top: 15px;
+	padding: 10px 0;
+}
+.side-bar-card.flag{
+	padding: 20px 0;
+}
+.side-bar-card .text-lg{
+	font-size: 150%; 
+}
+.side-bar-card .card-title,
+.side-bar-card .card-body .list .item{
+	padding: 10px 15px;
+}
+.side-bar-card .card-body .list .item:hover{
+	background: rgba(0,0,0,.05);
+}
+.side-bar-card .card-title{
+	font-size: 18px;
+	font-weight: bold;
+	padding-top: 0;
+	padding-bottom: 0;
+}
+.card-body .list .item .desc{
+	color: #888;
+}
+.news-title{
+	line-height: 1.5;
+}
+.news-status{
+	color: #999;
+}
+.news-status .label{
+	opacity: .8;
+}
+.news-content{
+	margin-top: 20px;
+	font-size: 15px;
+	line-height: 1.5;
+}	
+.news-content img{
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+.no-padding-h{
+	padding-left: 0;
+	padding-right: 0;
+}
+.footer{
+	margin-top: 20px;
+	padding: 50px 0;
+	text-align: center;
+	color: #999;
+}
+.container.container-small{
+	max-width: 500px;
+}
+.btn-primary{
+	background-color: #ea0c3c;
+	border-color: #d40632;
+}
+.btn-primary:hover{
+	background-color: #da0331;
+	border-color: #da0331;
+}
+#toggle-checkbox:checked~div{
+	display: block !important;
+}
+#toggle-label{
+	display: inline-block;
+	position: absolute;
+	right: 15px;
+	top: 15px;
+	font-size: 16px;
+	font-weight: normal;
+	color: #666;
+}
+#toggle-label:hover{
+	color: #333;
+}

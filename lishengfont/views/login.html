@@ -1,0 +1,275 @@
+
+<!DOCTYPE html>
+<html lang="en" ng-app="recommand">
+<head>
+<meta charset="UTF-8">
+	<meta name='referrer' content="never">
+<title>注册</title>
+	<link rel="shortcut icon" href="//mat1.gtimg.com/www/icon/favicon2.ico" />
+<meta content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=0" name="viewport" />
+<meta content="yes" name="apple-mobile-web-app-capable" />
+<meta content="black" name="apple-mobile-web-app-status-bar-style" />
+<meta content="telephone=no" name="format-detection" />
+<link href="css/style.css" rel="stylesheet" type="text/css" />
+	<script type="text/javascript" src="js/md5.js"></script>
+	<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+	<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="js/loginangular.js"></script>
+	<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+<style>
+	.touimg{
+		width: 50px;
+		border-radius: 50%;
+		padding: 5px;
+	}
+</style>
+
+</head>
+<body ng-controller="loginController">
+
+
+
+<div class="aui-register-popup">
+	<div class="aui-register-box">
+		<div class="aui-register-link">
+			<a href="/" class="fl">返回首页</a>
+			<a href="/login" class="fr">已有账号？去登录</a>
+		</div>
+		<div class="aui-register-logo">
+			<img class="touimg" src="{{imgUrl}}" alt="">
+		</div>
+		<div class="aui-register-form" id="verifyCheck">
+			<div class="register-wrap" id="register-wrap">
+				<div class="register" id="register">
+					<script>
+						function toDuanxin() {
+							jQuery("#rc").css("display","none")
+							jQuery("#shouji").css("display","inline")
+						}
+						function toMima() {
+							jQuery("#rc").css("display","inline")
+							jQuery("#shouji").css("display","none")
+						}
+						function exitDuanxin() {
+
+							jQuery("#shouji").css("display","none")
+
+
+
+						}
+						jQuery(document).ready(function () {
+							$("#nopw").click(function () {
+								exitDuanxin()
+							})
+							$("#normal").click(function () {
+								exitDuanxin()
+							})
+							$("#qrcode").click(function () {
+								exitDuanxin()
+							})
+						})
+
+
+					</script>
+					<div class="register-top" id="reg-top">
+						<h2 class="normal" id="normal" ng-click="imgUrl='images/login.jpg'" >登录</h2>
+						<h2 class="nopassword" id="nopw" >注册</h2>
+						<a id="qrcode" href="#" ng-click="saoma()">
+							<span class="aui-tag-size">扫码登录</span>
+						</a>
+					</div>
+					<!--账户密码登录-->
+					<div class="register-con" id="rc">
+					<div class="aui-register-form-item">
+						<input type="text"  ng-model="username" name="username" maxlength="20"  placeholder="账户名" class="txt03 f-r3 required" tabindex="3" data-valid="isNonEmpty||between:3-20||isUname" data-error="<i class='icon-tips'></i>您还没有输入账户名||<i class='icon-tips'></i>用户名长度3-20位||<i class='icon-tips'></i>只能输入字母、数字、且以中文或字母开头" id="adminNo">
+						<label class="focus valid"></label>
+
+					</div>
+					<div class="aui-register-form-item">
+						<input type="password" ng-model="password" name="password" placeholder="密码" id="password" maxlength="20" class="txt04 f-r3 required" tabindex="4" style="ime-mode:disabled;" onpaste="return  false" autocomplete="off" data-valid="isNonEmpty||between:6-20||level:2" data-error="<i class='icon-tips'></i>密码太短，最少6位||<i class='icon-tips'></i>密码长度6-20位||<i class='icon-tips'></i>密码太简单，有被盗风险，建议字母+数字的组合">
+						<label class="focus valid"></label>
+
+					</div>
+					<div class="aui-register-form-item">
+
+						<input id="aui-btn-reg" ng-click="login()" class="aui-btn-reg" placeholder=""  readonly="readonly" value="登录" >
+					</div>
+					<div class="aui-protocol">
+						忘记密码？
+						<a  onclick="toDuanxin()">短信验证码登录</a>
+
+					</div>
+
+					<div class="aui-thirds">
+						<a href="#">
+							<i class="aui-qq-img"></i>
+							<i>QQ登录</i>
+						</a>
+						<a href="#">
+							<i class="aui-wx-img"></i>
+							<i>微信登录</i>
+						</a>
+						<a href="#">
+							<i class="aui-wb-img"></i>
+							<i>微博登录</i>
+						</a>
+						<div class="clear"></div>
+					</div>
+				</div>
+					<!--手机验证码登录-->
+					<div class="register-con" id="shouji" style="display: none">
+						<div class="aui-register-form-item">
+							<input type="text"  ng-model="username" name="username" maxlength="20"  placeholder="手机号" class="txt03 f-r3 required"  id="adminNo">
+							<label class="focus valid"></label>
+
+						</div>
+						<div class="aui-register-form-item">
+							<input type="button" ng-click="huoqu()"   value="获取验证码" autocomplete="new-password" id="huoqu"  style="width: 100px;float: left;background-color: white;border-radius: 10px;text-align: center">
+
+							<input type="text" ng-model="input"  placeholder="验证码" autocomplete="new-password" id="yanzheng" style="width: 250px;border-radius: 10px">
+
+							<label class="focus valid"></label>
+							<script>
+
+								$(document).ready(function(){
+									var ordertime=20   //设置再次发送验证码等待时间
+									var timeleft=ordertime
+									var btn=$("#huoqu")
+
+
+
+									//计时函数
+									function timeCount(){
+										timeleft-=1
+										if (timeleft>0){
+											btn.val(timeleft+" 秒后重发");
+											setTimeout(timeCount,1000)
+										}
+										else {
+											btn.val("重新发送");
+											timeleft=ordertime   //重置等待时间
+											btn.removeAttr("disabled");
+										}
+									}
+
+									//事件处理函数
+									btn.on("click",function(){
+										$(this).attr("disabled",true); //防止多次点击
+										//此处可添加 ajax请求 向后台发送 获取验证码请求
+										timeCount(this);
+									})
+
+								})
+							</script>
+
+						</div>
+						<div class="aui-register-form-item">
+
+							<button id="aui-btn-duanxin" ng-click="toIndex()" class="aui-btn-reg" >登录</button>
+						</div>
+						<div class="aui-protocol">
+							手机不在身边？
+							<a  onclick="toMima()">账号密码登录</a>
+
+						</div>
+						<div class="aui-thirds">
+							<a href="#">
+								<i class="aui-qq-img"></i>
+								<i>QQ登录</i>
+							</a>
+							<a href="#">
+								<i class="aui-wx-img"></i>
+								<i>微信登录</i>
+							</a>
+							<a href="#">
+								<i class="aui-wb-img"></i>
+								<i>微博登录</i>
+							</a>
+							<div class="clear"></div>
+						</div>
+					</div>
+					<!--注册-->
+					<div class="login-con" id="lc">
+						<div class="aui-register-form-item">
+							<input type="text"  ng-model="username" name="username" maxlength="20"  placeholder="账户名" class="txt03 f-r3 required" tabindex="3" data-valid="isNonEmpty||between:3-20||isUname" data-error="<i class='icon-tips'></i>您还没有输入账户名||<i class='icon-tips'></i>用户名长度3-20位||<i class='icon-tips'></i>只能输入字母、数字、且以中文或字母开头" id="adminNo">
+							<label class="focus valid"></label>
+
+						</div>
+						<div class="aui-register-form-item">
+							<input type="password" ng-model="password" name="password" placeholder="密码" id="passwordRegister" maxlength="20" class="txt04 f-r3 required" tabindex="4" style="ime-mode:disabled;" onpaste="return  false" autocomplete="off" data-valid="isNonEmpty||between:6-20||level:2" data-error="<i class='icon-tips'></i>密码太短，最少6位||<i class='icon-tips'></i>密码长度6-20位||<i class='icon-tips'></i>密码太简单，有被盗风险，建议字母+数字的组合">
+							<label class="focus valid"></label>
+
+						</div>
+						<div class="aui-register-form-item">
+							<input type="text" ng-model="imgUrl" name="text" placeholder="头像" id="img"  class="txt04 f-r3 required" tabindex="4" style="ime-mode:disabled;"  autocomplete="off" data-valid="isNonEmpty||between:6-20||level:2" data-error="<i class='icon-tips'></i>密码太短，最少6位||<i class='icon-tips'></i>密码长度6-20位||<i class='icon-tips'></i>密码太简单，有被盗风险，建议字母+数字的组合">
+							<label class="focus valid"></label>
+
+						</div>
+						<div class="aui-register-form-item">
+
+							<input id="aui-btn-register" class="aui-btn-reg" placeholder=""  readonly="readonly" ng-click="register()" value="注册" >
+						</div>
+						<div class="aui-protocol">
+							注册即同意
+							<a  href="#">《********》</a>&
+							<a  href="#">《*****》</a>
+						</div>
+						<div class="aui-thirds">
+							<a href="#">
+								<i class="aui-qq-img"></i>
+								<i>QQ登录</i>
+							</a>
+							<a href="#">
+								<i class="aui-wx-img"></i>
+								<i>微信登录</i>
+							</a>
+							<a href="#">
+								<i class="aui-wb-img"></i>
+								<i>微博登录</i>
+							</a>
+							<div class="clear"></div>
+						</div>
+					</div>
+
+
+					<!-- 扫码登录 -->
+					<div class="saoma" id="sm">
+						<div class="screen-tu" id="screen" ng-click="changeMa()">
+							<span class="aui-tag-size" >密码登录</span>
+						</div>
+						<div class="aui-text-item">
+							<h1>扫码登录</h1>
+						</div>
+						<div class="qr-code">
+							<span class="tips_img"></span>
+							<img id="erweima" src="images/erweima.jpg" alt="">
+						</div>
+						<div class="aui-tab-footer">
+							<p>二维码失效了？| <a ng-click="reset()">重新扫码</a></p>
+						</div>
+
+					</div>
+
+				</div>
+			</div>
+			<div class="clearfix"></div>
+		</div>
+		<div class="aui-register-bottom">
+			<a>©nuc.edu.cn</a>
+			<a href="#">中北大学</a>
+			<a href="#">毕业设计</a>
+			<div class="clear"></div>
+		</div>
+	</div>
+</div>
+
+
+<script type="text/javascript" src="js/login.js"></script>
+
+
+
+
+</body>
+</html>

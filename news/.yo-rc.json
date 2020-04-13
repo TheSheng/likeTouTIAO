@@ -1,0 +1,35 @@
+{
+  "generator-jhipster": {
+    "promptValues": {
+      "packageName": "com.lisheng.project"
+    },
+    "jhipsterVersion": "6.0.0",
+    "applicationType": "microservice",
+    "baseName": "news",
+    "packageName": "com.lisheng.project",
+    "packageFolder": "com/lisheng/project",
+    "serverPort": "8081",
+    "authenticationType": "jwt",
+    "cacheProvider": "hazelcast",
+    "enableHibernateCache": false,
+    "websocket": false,
+    "databaseType": "sql",
+    "devDatabaseType": "mysql",
+    "prodDatabaseType": "mysql",
+    "searchEngine": false,
+    "messageBroker": false,
+    "serviceDiscoveryType": "eureka",
+    "buildTool": "maven",
+    "enableSwaggerCodegen": false,
+    "jwtSecretKey": "OGZkZDYwMDMyMGUwODJjZDA1MTNjMjVlZWM5NDM0MDMwYjZlMmFhNDA5N2NlZWRmZjI1MmI3ZTA0YWFiYzhjMDBlZjZmNWFmNDZhNmFkMmVhNGRiMDhkYjI3N2U5OGU2YTQ0NjQwZTg5NzY1OGQ4NzBiZTVjODc4MWVlYmMxOWU=",
+    "testFrameworks": [],
+    "jhiPrefix": "jhi",
+    "entitySuffix": "",
+    "dtoSuffix": "DTO",
+    "otherModules": [],
+    "enableTranslation": false,
+    "clientPackageManager": "npm",
+    "skipClient": true,
+    "skipUserManagement": true
+  }
+}

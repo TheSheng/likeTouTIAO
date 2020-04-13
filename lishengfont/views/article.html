@@ -1,0 +1,281 @@
+<!doctype html>
+<html lang="en" ng-app="article">
+<head>
+	<meta charset="UTF-8">
+	<link rel="shortcut icon" href="//mat1.gtimg.com/www/icon/favicon2.ico" />
+	<meta name='referrer' content="never">
+	<meta name="viewport" content="width=device-width,initial-scale=1,user-scalable=no">
+	<title>副页</title>
+	<script src="https://cdn.bootcss.com/jquery/1.11.1/jquery.min.js"></script>
+	<!-- 最新版本的 Bootstrap 核心 CSS 文件 -->
+	<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link href="https://cdn.bootcss.com/font-awesome/4.6.0/css/font-awesome.min.css" rel="stylesheet">
+	<!-- 最新的 Bootstrap 核心 JavaScript 文件 -->
+	<script src="https://cdn.jsdelivr.net/npm/bootstrap@3.3.7/dist/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+	<script src="https://cdn.bootcss.com/angular.js/1.5.8/angular-cookies.min.js"></script>
+	<script type="text/javascript" src="js/article.js"></script>
+	<link rel="stylesheet" type="text/css" href="./news.css">
+	<link rel="stylesheet" type="text/css" href="css/nav.css">
+	<script type="text/javascript" src="js/pinglun.js" ></script>
+	<script type="text/javascript" src="js/nav.js"></script>
+
+	<link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
+	<script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+	<script src="https://pv.sohu.com/cityjson?ie=utf-8"></script>
+
+	<script>
+		window.DATA = {
+
+
+			"videoArr": []
+		}
+
+	</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+	<style>
+
+		.content-article .one-p {
+			line-height: 2.2;
+			margin-bottom: 2em;
+			overflow-wrap: break-word;
+			word-wrap: break-word;
+		}
+		img.content-picture {
+			max-width: 100%;
+			margin: .6em auto;
+			display: block;
+		}
+
+		.touimg{
+			width: 50px;
+			border-radius: 50%;
+			padding: 5px;
+		}
+		.container{
+			margin-top: 30px;
+			width: 1000px;
+			left: 100px;
+		}
+		.commentbox{
+			width: 900px;
+			margin: 20px auto;
+		}
+		.mytextarea {
+			width: 100%;
+			overflow: auto;
+			word-break: break-all;
+			height: 100px;
+			color: #000;
+			font-size: 1em;
+			resize: none;
+		}
+		.comment-list{
+			width: 900px;
+			margin: 20px auto;
+			clear: both;
+			padding-top: 20px;
+		}
+		.comment-list .comment-info{
+			position: relative;
+			margin-bottom: 20px;
+			margin-bottom: 20px;
+			border-bottom: 1px solid #ccc;
+		}
+		.comment-list .comment-info header{
+			width: 10%;
+			position: absolute;
+		}
+		.comment-list .comment-info header img{
+			width: 100%;
+			border-radius: 50%;
+			padding: 5px;
+		}
+		.comment-list .comment-info .comment-right{
+			padding:5px 0px 5px 11%;
+		}
+		.comment-list .comment-info .comment-right h3{
+			margin: 5px 0px;
+		}
+		.comment-list .comment-info .comment-right .comment-content-header{
+			height: 25px;
+		}
+		.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span{
+			padding-right: 2em;
+			color: #aaa;
+		}
+		.comment-list .comment-info .comment-right .comment-content-header span,.comment-list .comment-info .comment-right .comment-content-footer span.reply-btn,.send,.reply-list-btn{
+			cursor: pointer;
+		}
+		.comment-list .comment-info .comment-right .reply-list {
+			border-left: 3px solid #ccc;
+			padding-left: 7px;
+		}
+		.comment-list .comment-info .comment-right .reply-list .reply{
+			border-bottom: 1px dashed #ccc;
+		}
+		.comment-list .comment-info .comment-right .reply-list .reply div span{
+			padding-left: 10px;
+		}
+		.comment-list .comment-info .comment-right .reply-list .reply p span{
+			padding-right: 2em;
+			color: #aaa;
+		}
+		.myDiv img{
+			max-width: 600px;
+		}
+	</style>
+</head>
+<body ng-controller="articleController">
+<div style="margin-top:0px">
+<div class="navbar navbar-default" style="top:0px;width:100%;height: 80px">
+	<div class="container">
+		<div class="navbar-header">
+			<div class="navbar-brand">
+				<img src="./image/logo.png">
+			</div>
+		</div>
+		<input type="checkbox" id="toggle-checkbox" class="hidden">
+		<div class="hidden-xs">
+			<ul class="nav navbar-nav">
+				<li class="active"><a href="/">首页</a></li>
+				<li><a href="/member">个人中心</a></li>
+
+				<p hidden class="userId">{{user.id}}</p>
+				<p hidden class="newsId">{{news.id}}</p>
+			</ul>
+			<ul class="nav navbar-nav navbar-right">
+				<li><img src="{{user.imgUrl}}" class="touimg"></li>
+				<li><a href="login.html" id="userName">{{user.userName}}</a></li>
+				<li ng-if="user==null"><a href="/login">注册</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+<div class="container">
+	<div class="row">
+		<div class="col-md-8" >
+			<h1 class="news-title">
+				{{news.title}}
+			</h1>
+			<div class="news-status">
+				{{news.author}}  {{news.time}}发布
+				<div class="label label-default" ng-repeat="x in news.tag.split(';')">{{x}}</div>
+
+			</div>
+			<div class="news-content">
+				<div class="LEFT">
+
+
+				<blockquote>{{news.title}}</blockquote>
+
+
+
+
+               <div class="myDiv">
+
+				   <article id="word-display" ng-bind-html="zhuanma(news.article) | trustHtml">
+
+				   </article>
+				   <div id="video"  >
+				   </div>
+			   </div>
+					<div id="imgJi"></div>
+				</div>
+
+		<div class="col-md-4" style="width: 300px;position: fixed;top:70px;right: 0px" >
+			<div class="side-bar-card">
+				<div class="card-title" ng-if="statu">读过这篇文章的人还喜欢</div>
+				<div class="card-title" ng-if="!statu">暂时没有好推荐的了</div>
+				<div class="card-body">
+					<div class="list">
+						<div class="item clearfix" ng-repeat="x in likeList" ng-click="save(x.id)">
+							<div class="col-xs-5 no-padding-h"><img src="{{x.imgurl}}" alt=""></div>
+							<div class="col-xs-7">
+								<div class="title">{{x.title.slice(0,10)}}*******</div>
+								<div class="desc">{{x.author}} </div>
+							</div>
+						</div>
+
+					</div>
+				</div>
+			</div>
+
+		</div>
+	</div>
+
+</div>
+
+
+	</div>
+</div>
+</div>
+
+<div class="container" >
+
+	<div class="commentbox" style="margin-left: 0px;width: 780px">
+
+		<div><img src="{{user.imgUrl}}" class="touimg" ></div><textarea cols="80" rows="50" placeholder="来说几句吧......" class="mytextarea" id="content"></textarea>
+		<div class="btn btn-info pull-right" id="comment"  >评论</div>
+
+	</div>
+	<div class="comment-list" style="margin-left: 0px">
+
+
+
+	</div>
+</div>
+<div class="leftNav-item">
+	<ul>
+
+		<li ng-if="isZan==false">
+			<i style="font-size: 15px">{{zan}}</i><i class="fa fa-thumbs-o-up" aria-hidden="true"></i>
+			<a href="" class="rota" ng-click="zanfun('zan')">点赞</a>
+		</li>
+		<li ng-if="isZan==true">
+			<i style="font-size: 15px">{{zan}}</i><i class="fa fa-thumbs-up" aria-hidden="true"></i>
+			<a href="" class="rota" ng-click="zanfun('quxiaozan')">取消赞</a>
+		</li>
+		<li title="踩" ng-if="isCai==false">
+			<i style="font-size: 15px">{{cai}}</i><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>
+
+			<a href=""class="rota" ng-click="zanfun('cai')">踩</a>
+		</li>
+		<li ng-if="isCai==true">
+			<i style="font-size: 15px">{{cai}}</i><i class="fa fa-thumbs-down" aria-hidden="true"></i>
+			<a href=""class="rota" ng-click="zanfun('quxiaocai')">取消踩</a>
+		</li>
+
+		<li title="收藏" ng-if="isShoucang==false">
+			<i style="font-size: 15px">{{shoucang}}</i><i class="fa fa-heart-o" aria-hidden="true"></i>
+
+			<a href=""class="rota" ng-click="zanfun('shoucang')">收藏</a>
+		</li>
+		<li title="收藏" ng-if="isShoucang==true">
+			<i style="font-size: 15px">{{shoucang}}</i><i class="fa fa-heart" aria-hidden="true"></i>
+
+			<a href=""class="rota" ng-click="zanfun('quxiaoshoucang')">取消收藏</a>
+		</li>
+
+		<li title="返回顶部" class="for-top">
+			<i class="fa fa-arrow-up"></i>
+			<a href="javascript:;" class="rota">去顶部</a>
+		</li>
+	</ul>
+</div>
+
+
+</body>
+</html>

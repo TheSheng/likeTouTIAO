@@ -1,0 +1,108 @@
+
+body {
+    font-family:'Poppins';
+}
+
+.download-button {
+    position:fixed;
+    margin:auto;
+    top:-100px;
+    left:800px;
+    right:0;
+    bottom:0;
+    width:120px;
+    height:120px;
+    background:#5757ff;
+    border-radius:5px;
+    -webkit-box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    box-shadow:0 10px 20px rgba(0,0,0,0.2);
+    -webkit-transition:250ms -webkit-transform, 250ms -webkit-box-shadow;
+    transition:250ms -webkit-transform, 250ms -webkit-box-shadow;
+    transition:250ms transform, 250ms box-shadow;
+    transition:250ms transform, 250ms box-shadow, 250ms -webkit-transform, 250ms -webkit-box-shadow;
+    cursor:pointer;
+}
+.download-button:hover {
+    -webkit-transform:scale(0.95);
+    transform:scale(0.95);
+    -webkit-box-shadow:0 4px 8px rgba(0,0,0,0.1);
+    box-shadow:0 4px 8px rgba(0,0,0,0.1);
+}
+
+.download-button_icon {
+    position:absolute;
+    margin:auto;
+    top:10px;
+    left:0;
+    right:0;
+    width:80px;
+    height:80px;
+}
+.download-button_icon span {
+    position:absolute;
+    margin:auto;
+    top:0;
+    left:0;
+    right:0;
+    bottom:0;
+    width:4px;
+    height:50px;
+    background:#fff;
+    border-radius:4px;
+    content:'';
+}
+
+.download-button_icon span:nth-child(2),
+.download-button_icon span:nth-child(3) {
+    top:35px;
+    height:25px;
+    left:16px;
+    -webkit-transform:rotate(45deg);
+    transform:rotate(45deg);
+}
+.download-button_icon span:nth-child(3) {
+    left:-16px;
+    -webkit-transform:rotate(-45deg);
+    transform:rotate(-45deg);
+}
+
+.download-button_text {
+    position:absolute;
+    left:0;
+    right:0;
+    bottom:0;
+    color:#fff;
+    text-align:center;
+    font-size:1em;
+    font-weight:700;
+    padding:15px 0;
+}
+.files {
+    position:relative;
+    margin-top:130px;
+    text-align:center;
+}
+.files .file {
+    width:15px;
+    fill:#5757ff;
+    -webkit-animation:800ms fallingFile infinite ease-in;
+    animation:800ms fallingFile infinite ease-in;
+}
+@-webkit-keyframes fallingFile {
+    0%{opacity:0;-webkit-transform:translate3d(0,-40px,0) rotate(0deg);transform:translate3d(0,-40px,0) rotate(0deg);}
+    60%{opacity:1;}
+    100%{opacity:0;-webkit-transform:translate3d(0,120px,0) rotate(90deg);transform:translate3d(0,120px,0) rotate(90deg);}
+}
+@keyframes fallingFile {
+    0%{opacity:0;-webkit-transform:translate3d(0,-40px,0) rotate(0deg);transform:translate3d(0,-40px,0) rotate(0deg);}
+    60%{opacity:1;}
+    100%{opacity:0;-webkit-transform:translate3d(0,120px,0) rotate(90deg);transform:translate3d(0,120px,0) rotate(90deg);}
+}
+
+.fade-enter-active, .fade-leave-active {
+    -webkit-transition: opacity .5s;
+    transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to {
+    opacity: 0;
+}

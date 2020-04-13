@@ -1,0 +1,111 @@
+﻿<!doctype html>
+<html ng-app="tag">
+<head>
+<meta charset="utf-8">
+  <meta name='referrer' content="never">
+  <link rel="shortcut icon" href="//mat1.gtimg.com/www/icon/favicon2.ico" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+  <title>bubble</title>
+  <link rel="stylesheet" href="css/downButto.css">
+  <link rel="stylesheet" href="css/Bubble.css">
+  <link href="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.css" rel="stylesheet">
+  <script src="https://cdn.bootcss.com/sweetalert/1.1.3/sweetalert.min.js"></script>
+  <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular.min.js"></script>
+  <script src="https://cdn.bootcss.com/angular.js/1.5.8/angular-cookies.min.js"></script>
+
+  <script type="text/javascript" src="js/tag.js"></script>
+  <script type="text/javascript" src="js/Bubble.js"></script>
+  <script src="https://cdn.bootcss.com/vue/2.2.4/vue.min.js"></script>
+  <style>
+	  body{background-color: #252525}
+  </style>
+
+</head>
+<body ng-controller="tagController">
+<div class="site-canvas" id="app" ng-click="commit()">
+  <div class="download-button" @click="download = !download" :class="{'downloading':download}">
+    <div class="download-button_icon">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+    <div class="download-button_text">
+      <span >我选好了</span>
+    </div>
+    <transition name="fade">
+      <div class="files" v-if="download">
+        <svg v-for="i in [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0]" :style="fileStyles()" viewBox="0 0 8 8" class="file">
+          <path d="M0 0v8h7v-4h-4v-4h-3zm4 0v3h3l-3-3z"></path>
+        </svg>
+      </div>
+    </transition>
+  </div>
+</div>
+
+<script>
+  (function(){
+    var app = new Vue({
+      el: '#app',
+      data: {
+        download: false
+      },
+      methods: {
+        fileStyles: function() {
+          let delay = -(Math.floor(Math.random() * 10) * 254);
+          let duration = (Math.floor(Math.random() * 11) + 9) * 100;
+          return {
+            'animation-delay' : delay + 'ms',
+            'animation-duration' : duration + 'ms'
+          }
+        }
+      },
+      mounted() {
+
+      }
+    });
+  })();</script>
+<div class="wrapper">
+
+    <div class="tagcloud">
+      <!--ng-repeat=" x  in tagList ">-->
+      <!-- bo大小 co颜色 -->
+      <!--{{tagList.indexOf(x)%6+1}}-->
+      <!--{{tagList.indexOf(x)%7+1}}-->
+      <!--<a class="b0{{tagList.indexOf(x)%6+1}} co0{{tagList.indexOf(x)%7+1}}" href="#">{{x}}</a>-->
+      <a class="b01 co01" href="#" ng-click="editTag(tagList[0])">{{tagList[0]}}</a>
+      <a class="b02 co02" href="#" ng-click="editTag(tagList[1])">{{tagList[1]}}</a>
+      <a class="b03 co05" href="#" ng-click="editTag(tagList[2])">{{tagList[2]}}</a>
+      <a class="b04 co02" href="#" ng-click="editTag(tagList[3])">{{tagList[3]}}</a>
+      <a class="b03 co05" href="#" ng-click="editTag(tagList[4])">{{tagList[4]}}</a>
+      <a class="b02 co06" href="#" ng-click="editTag(tagList[5])">{{tagList[5]}} fish</a>
+      <a class="b03 co07" href="#" ng-click="editTag(tagList[6])">{{tagList[6]}}</a>
+      <a class="b04 co01" href="#" ng-click="editTag(tagList[7])">{{tagList[7]}}</a>
+      <a class="b03 co02" href="#" ng-click="editTag(tagList[8])">{{tagList[8]}} No. 1</a>
+      <a class="b04 co03" href="#" ng-click="editTag(tagList[9])">{{tagList[9]}}</a>
+      <a class="b03 co04" href="#" ng-click="editTag(tagList[10])">{{tagList[10]}}</a>
+      <a class="b04 co05" href="#" ng-click="editTag(tagList[11])">{{tagList[11]}}</a>
+      <a class="b04 co06" href="#" ng-click="editTag(tagList[12])">{{tagList[12]}} </a>
+      <a class="b02 co07" href="#" ng-click="editTag(tagList[13])">{{tagList[13]}}'s</a>
+      <a class="b03 co01" href="#" ng-click="editTag(tagList[14])">{{tagList[14]}}</a>
+      <a class="b04 co02" href="#" ng-click="editTag(tagList[15])">{{tagList[15]}}</a>
+      <a class="b01 co01" href="#" ng-click="editTag(tagList[16])">{{tagList[16]}}</a>
+      <a class="b03 co06" href="#" ng-click="editTag(tagList[17])">{{tagList[17]}}</a>
+      <a class="b03 co05" href="#" ng-click="editTag(tagList[18])">{{tagList[18]}}</a>
+      <a class="b04 co06" href="#" ng-click="editTag(tagList[19])">{{tagList[19]}}</a>
+    </div>
+</div><!--wrapper-->
+<script type="text/javascript">
+    /*3D标签云*/
+    tagcloud({
+        selector: ".tagcloud",  //元素选择器
+        fontsize: 16,       //基本字体大小, 单位px
+        radius: 140,         //滚动半径, 单位px 页面宽度和高度的五分之一
+        mspeed: "slow",   //滚动最大速度, 取值: slow, normal(默认), fast
+        ispeed: "slow",   //滚动初速度, 取值: slow, normal(默认), fast
+        direction: 135,     //初始滚动方向, 取值角度(顺时针360): 0对应top, 90对应left, 135对应right-bottom(默认)...
+        keep: false          //鼠标移出组件后是否继续随鼠标滚动, 取值: false, true(默认) 对应 减速至初速度滚动, 随鼠标滚动
+    });
+</script>
+</body>
+</html>
